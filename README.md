@@ -1,163 +1,72 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>SmartMall</title>
+# SmartMall
 
-    <style>
-        body {
-            font-family: Arial;
-            margin: 0;
-            background: #f4f6f8;
-        }
+SmartMall is a small prototype for helping people find products inside a shopping mall.
 
-        header {
-            background: #172b4d;
-            color: white;
-            padding: 25px;
-            text-align: center;
-        }
+When someone visits a mall for the first time, they may know the product they want but may not know which store has it or where the store is located. SmartMall is designed to make this easier.
 
-        .container {
-            max-width: 700px;
-            margin: 40px auto;
-            padding: 20px;
-        }
+## What it does
 
-        input {
-            width: 70%;
-            padding: 14px;
-            font-size: 16px;
-        }
+The user can search for a product and get basic information such as:
 
-        button {
-            padding: 14px 20px;
-            background: #1677ff;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
+- Product name
+- Price
+- Store
+- Floor
+- Section
+- Availability
 
-        #result {
-            margin-top: 30px;
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            display: none;
-        }
+The prototype also has a simple navigation option that shows the user how to reach the product location.
 
-        .map {
-            margin-top: 20px;
-            padding: 30px;
-            background: #e9eef5;
-            text-align: center;
-        }
-    </style>
-</head>
+### Example
 
-<body>
+If the user searches for **KitKat**, the system can show:
 
-<header>
-    <h1>🛍️ SmartMall</h1>
-    <p>Find any product inside the mall</p>
-</header>
+- Store: Reliance Smart
+- Floor: 2nd Floor
+- Section: Chocolate Section
+- Price: ₹40
+- Status: Available
 
-<div class="container">
+## Current version
 
-    <input id="search" placeholder="Search product...">
+This is an initial prototype, so the product information is currently stored directly in the project.
 
-    <button onclick="findProduct()">Search</button>
+The prototype currently supports:
 
-    <div id="result"></div>
+- Searching for products
+- Showing product details
+- Showing the store and location
+- Showing availability
+- Basic navigation
 
-</div>
+## Future plans
 
-<script>
+The idea can be extended with features such as:
 
-const products = [
-    {
-        name: "KitKat",
-        price: 40,
-        store: "Reliance Smart",
-        floor: "2nd Floor",
-        section: "Chocolate Section"
-    },
-    {
-        name: "Dairy Milk",
-        price: 50,
-        store: "Spencer's",
-        floor: "1st Floor",
-        section: "Chocolate Section"
-    },
-    {
-        name: "Laptop Charger",
-        price: 1500,
-        store: "Croma",
-        floor: "3rd Floor",
-        section: "Computer Accessories"
-    }
-];
+- Natural language search
+- Live stock information
+- Indoor positioning
+- Shortest route calculation using A*
+- Dynamic route changes
+- Crowd-aware navigation
+- Accessibility-friendly routes
+- Finding multiple products in one trip
+- Product recommendations
+- Store dashboard
+- Mall analytics
 
-function findProduct() {
+## Technologies
 
-    let search = document
-        .getElementById("search")
-        .value
-        .toLowerCase();
+For this prototype:
 
-    let product = products.find(p =>
-        p.name.toLowerCase().includes(search)
-    );
+- HTML
+- CSS
+- JavaScript
 
-    let result = document.getElementById("result");
+For a larger version, the project can be extended using React, Node.js, a database, indoor positioning technologies, and AI-based search.
 
-    result.style.display = "block";
+## Project structure
 
-    if (!product) {
-        result.innerHTML = "<h3>❌ Product not found</h3>";
-        return;
-    }
-
-    result.innerHTML = `
-        <h2>🍫 ${product.name}</h2>
-
-        <p><b>Price:</b> ₹${product.price}</p>
-
-        <p>🏪 <b>Store:</b> ${product.store}</p>
-
-        <p>📍 <b>Floor:</b> ${product.floor}</p>
-
-        <p>🗂️ <b>Section:</b> ${product.section}</p>
-
-        <p>✅ <b>Available</b></p>
-
-        <button onclick="navigate()">
-            Navigate
-        </button>
-
-        <div class="map" id="map"></div>
-    `;
-}
-
-function navigate() {
-
-    document.getElementById("map").innerHTML = `
-        <h3>🗺️ Navigation</h3>
-
-        <p>Entrance</p>
-        ↓
-        <p>Lift</p>
-        ↓
-        <p>2nd Floor</p>
-        ↓
-        <p>Reliance Smart</p>
-        ↓
-        <p>Chocolate Section</p>
-
-        <h3>📍 You have arrived!</h3>
-    `;
-}
-
-</script>
-
-</body>
-</html>
+```text
+SmartMall/
+└── index.html
